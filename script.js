@@ -1,36 +1,31 @@
-const apiKey = 'a22e920383c3a144975fdf3657ba7011';
-const apiUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=ko&page=1`;
-const imgUrl = 'https://api.themoviedb.org/3/movie/top_rated/r782z4H7GzkyNaf3hAtBB4pVkOj.jpg'
 
 const options = {
   method: 'GET',
   headers: {
-    'Accept': 'application/json',
-    'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMjJlOTIwMzgzYzNhMTQ0OTc1ZmRmMzY1N2JhNzAxMSIsInN1YiI6IjY1MmYzODgzZWE4NGM3MDEyZDcxYzJkYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8z92nUs3vBjcTyH93XU1xQ4JI-1scrPHlpKv6YB3Pok'
   }
 };
-/// https://api.themoviedb.org/3/movie/top_rated/r782z4H7GzkyNaf3hAtBB4pVkOj.jpg
-fetch(apiUrl, options)
+
+fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', options)
   .then(response => {
     if (!response.ok) {
-      throw new Error('네트워크 오류');
+      throw new Error('오류');
     }
     console.log(response);
-    return response.json(); // JSON 데이터 가져오기
+    return response.json(); 
   })
   .then(data => {
     const results = data.results;
     const movieList = document.getElementsByClassName('item');
     console.log(movieList[0]);
 
-
-    // results = 실제로 가져온 데이터 10 => 10개 item을 만들면 됨
     results.forEach(movie => {
-      const item = document.createElement("div") // <div></div>
+      const item = document.createElement("div")
       item.classList.add('container')
       item.classList.add('item')
 
-      const listItem = document.createElement('div'); // <h4></h4>
+      const listItem = document.createElement('div');
       listItem.classList.add('name')
 
       const imgItem = document.createElement('img');
@@ -47,5 +42,7 @@ fetch(apiUrl, options)
   .catch(error => {
     console.error('오류 발생:', error);
   });
+
+
 
 
