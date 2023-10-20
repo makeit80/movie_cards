@@ -13,7 +13,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', options
       throw new Error('오류');
     }
     console.log(response);
-    return response.json(); 
+    return response.json();
   })
   .then(data => {
     const results = data.results;
@@ -28,11 +28,19 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', options
       const listItem = document.createElement('div');
       listItem.classList.add('name')
 
+      // 이미지
       const imgItem = document.createElement('img');
       imgItem.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
+      imgItem.classList.add('movieImg')
       item.appendChild(imgItem)
 
+      // 클릭 이벤트
+      const idItem = document.createElement('p')
+      idItem.innerHTML = `id값 : ${movie.id}`
+      imgItem.appendChild(idItem)
+      imgItem.onclick = openImg;
+
+      // 이름, 평점
       listItem.innerHTML = `${movie.title} <br>평점: ${movie.vote_average}`;
       item.appendChild(listItem)
       const container = document.getElementsByClassName("wrap")[0]
@@ -42,6 +50,13 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', options
   .catch(error => {
     console.error('오류 발생:', error);
   });
+
+function openImg(event) {
+  event.target.addEventListener('click', () => {
+    alert(event.target.textContent)
+  })
+}
+
 
 
 
