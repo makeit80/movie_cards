@@ -22,11 +22,14 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', options
 
     results.forEach(movie => {
       const item = document.createElement("div")
-      item.classList.add('container')
       item.classList.add('item')
 
       const listItem = document.createElement('div');
       listItem.classList.add('name')
+
+      const voteList = document.createElement('div');
+      voteList.classList.add('voteAverage')
+
 
       // 이미지
       const imgItem = document.createElement('img');
@@ -41,8 +44,10 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', options
       imgItem.onclick = openImg;
 
       // 이름, 평점
-      listItem.innerHTML = `${movie.title} <br>평점: ${movie.vote_average}`;
+      listItem.innerHTML = `${movie.title}`;
+      voteList.innerHTML = `평점: ${movie.vote_average}`
       item.appendChild(listItem)
+      item.appendChild(voteList)
       const container = document.getElementsByClassName("wrap")[0]
       container.appendChild(item)
     });
@@ -50,6 +55,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', options
   .catch(error => {
     console.error('오류 발생:', error);
   });
+  
 
 function openImg(event) {
   event.target.addEventListener('click', () => {
@@ -57,6 +63,26 @@ function openImg(event) {
   })
 }
 
+
+// 검색 기능
+const searchInput = document.getElementById('inputBox');
+console.log('test');
+console.log(searchInput);
+searchInput.addEventListener('keyup', (e) => {
+  e.preventDefault();
+  let search = document.getElementById('inputBox').value.toLowerCase();
+  let itemList = document.getElementsByClassName('item');
+  for (let i = 0; i < itemList.length; i++) {
+    console.log(itemList[i]);
+    var name = itemList[i].getElementsByClassName('name');
+    console.log(name[0]);
+    if (name[0].innerHTML.toLowerCase().includes(search)) {
+      itemList[i].style.display = "block"
+    } else {
+      itemList[i].style.display = "none"
+    }
+  }
+})
 
 
 

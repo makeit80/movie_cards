@@ -19,9 +19,6 @@ body {
 
 }
 
-.container {
-    background-color: rgb(192, 179, 179);
-}
 
 .title {
     height: 500px;
@@ -42,6 +39,7 @@ body {
 }
 
 .item {
+    background-color: rgb(192, 179, 179);
     border-radius: 10px;
     margin: 2vw;
     padding: 10px;
@@ -50,6 +48,7 @@ body {
 /* 영화 이미지 */
 img {
     height: 32vw;
+    border-radius: 10px;
 }
 
 .movieImg {
@@ -57,11 +56,12 @@ img {
 }
 
 /* 영화 이름, 평점 */
-.name {
+.name, .voteAverage {
+    padding-top: 15px;
     font-size: 1.5555vw;
     font-weight: bold;
     text-align: center;
-    line-height: 2.9999vw;
+    /* line-height: 1.5555vw; */
     color: rgb(28, 27, 27);
     letter-spacing: 0.0111em;
 }
@@ -76,7 +76,7 @@ img {
     font-weight:lighter;
 }
 
-.inputBox {
+#inputBox {
     font-size: 15px;
     color: #222222;
     width: 60%;
@@ -96,7 +96,7 @@ input:focus {outline: none;}
     display: block;
     position: absolute;
     bottom: 0;
-    left: 16.5%;
+    left: 20.0%;
     background-color: #666;
     width: 0;
     height: 2px;
@@ -107,7 +107,7 @@ input:focus {outline: none;}
 #search_input {
     position: absolute;
     color: #aaa;
-    left: 17.5%;
+    left: 20.5%;
     font-size: 20px;
     bottom: 8px;
     transition: all .2s;
@@ -122,23 +122,5 @@ input:focus ~ #search_input, input:valid ~ #search_input {
 
 input:focus ~ #inputBar, input:valid ~ #inputBar {
     width: 60%;
-}
-
-/*검색 버튼*/
-.srhBtn {
-    background-color:rgb(236, 235, 235);
-    border: 1px solid #a49c9c;
-    border-radius: 10px;
-    color: #7e5e5e;
-    cursor: pointer;
-    transition: 0.5s;
-    padding: 7px 20px;
-    margin-left: 10px;
-    font-weight: bold;
-}
-
-.srhBtn:hover {
-    background-color:#cfcfcf;
-    color: #666;
 }
 
