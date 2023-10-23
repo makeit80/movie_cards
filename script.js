@@ -66,16 +66,12 @@ function openImg(event) {
 
 // 검색 기능
 const searchInput = document.getElementById('inputBox');
-console.log('test');
-console.log(searchInput);
 searchInput.addEventListener('keyup', (e) => {
   e.preventDefault();
   let search = document.getElementById('inputBox').value.toLowerCase();
   let itemList = document.getElementsByClassName('item');
   for (let i = 0; i < itemList.length; i++) {
-    console.log(itemList[i]);
     var name = itemList[i].getElementsByClassName('name');
-    console.log(name[0]);
     if (name[0].innerHTML.toLowerCase().includes(search)) {
       itemList[i].style.display = "block"
     } else {
